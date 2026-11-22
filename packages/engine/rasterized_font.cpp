@@ -132,7 +132,13 @@ constexpr int kRuntimeExtraGlyphs = sizeof(kRuntimeExtraCodepoints)/sizeof(int);
 // character (lv_textarea's LV_TEXTAREA_PWD_BULLET_UNICODE): without it every
 // masked character fell back to nothing. Kept short: each entry costs a Glyph
 // in every one of the 64 cache slots, on boards with no PSRAM too.
-constexpr int kRuntimeExtraCodepoints[] = {0x00b0, 0x2022};
+constexpr int kRuntimeExtraCodepoints[] = {
+    0x00b0, 0x00b5, 0x00b7, 0x00c2, 0x00c7, 0x00ce, 0x00d6, 0x00d7, 0x00db, 0x00dc,
+    0x00e2, 0x00e7, 0x00ee, 0x00f6, 0x00fb, 0x00fc,
+    0x011e, 0x011f, 0x0130, 0x0131, 0x015e, 0x015f,
+    0x2013, 0x2014, 0x2018, 0x2019, 0x201c, 0x201d, 0x2022, 0x2026,
+    0x2190, 0x2191, 0x2192, 0x2193, 0x2212, 0x2733
+};
 constexpr int kRuntimeExtraGlyphs = sizeof(kRuntimeExtraCodepoints) / sizeof(int);
 #endif
 constexpr int kRuntimeGlyphCapacity = kRuntimeAsciiCount + kRuntimeExtraGlyphs;
@@ -141,7 +147,7 @@ constexpr int kRuntimeFontCacheSlots = 64;
 constexpr int kRuntimeMaxAtlasWidth = 4096;
 constexpr int kRuntimeMaxFontPx = 2048;
 #else
-constexpr int kRuntimeMaxAtlasWidth = 256;
+constexpr int kRuntimeMaxAtlasWidth = 512;
 constexpr int kRuntimeMaxFontPx = 192;
 #endif
 constexpr int kRuntimeAtlasPadding = 1;
