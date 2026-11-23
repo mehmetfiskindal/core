@@ -3,6 +3,13 @@ set -euo pipefail
 
 TEST_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# Compiler, runtime headers and jsdom default to the sibling checkouts or to
+# packages/core's own dependencies; the native tests compile with the built
+# Gea plugin.
+source "$TEST_DIR/test-env.sh"
+gea_require_compiler_runtime
+gea_require_plugin_build
+
 # Keep the established order, then discover additional standalone tests so new
 # files cannot silently fall out of the full runner.
 NODE_TESTS=(
@@ -28,6 +35,7 @@ NATIVE_TESTS=(
   run-bouncing-balls-regressions.sh
   run-text-sprite-cache.sh
   run-canvas-rounded-rect-alpha.sh
+  run-canvas-opaque-fill.sh
   run-transformed-rounded-rect.sh
   run-renderer-features.sh
   run-rotated-projected-text.sh
